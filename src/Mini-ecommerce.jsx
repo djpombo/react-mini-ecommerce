@@ -33,12 +33,27 @@ function MiniEcommerce() {
     setCarrinho(objCarrinho);
   }
 
+  function handleExibirProdutos() {
+    
+    setExibirCheckout(false);
+    setExibirProdutos(true);
+  }
+
+  function handleExibirCheckout(total) {
+
+    setExibirCheckout(true);
+    setExibirProdutos(false);
+    setTotal(total);
+  }
+
   return (
     <div>
-      <Menu />
+      <Menu produtos={carrinho.produtos}
+           handleExibirProdutos={handleExibirProdutos}
+           handleExibirCheckout={handleExibirCheckout} />
       <Produtos
       visivel={exibirProdutos} 
-      adicionarProduto={adicionarProduto}/>
+      adicionarProduto={adicionarProduto} />
       <Checkout />
     </div>
   );
