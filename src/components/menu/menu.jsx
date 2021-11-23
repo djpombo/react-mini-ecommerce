@@ -42,9 +42,6 @@ function Menu(props) {
                             </div>
                         }
                         drop="start"
-                        
-
-
                     >
                         <NavDropdown.Item href=""
                             onClick={props.handleExibirProdutos}>
@@ -53,7 +50,7 @@ function Menu(props) {
                         </NavDropdown.Item>
 
                         <NavDropdown.Divider />
-                        <ItensCarrinhoMenu produtos={props.produtos}/>
+                        <ItensCarrinhoMenu produtos={props.produtos} />
                         <NavDropdown.Divider />
 
                         <NavDropdown.Item href="" data-testid="total-carrinho" >
