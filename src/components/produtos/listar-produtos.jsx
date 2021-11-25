@@ -1,8 +1,6 @@
 import imgProd_01 from '../../img/img_1.jpg';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { useState, useEffect } from 'react';
-import { render } from '@testing-library/react';
 import PropTypes from 'prop-types';
 import './listar-produtos.css';
 
@@ -18,8 +16,6 @@ function ListarProdutos(props) {
         { nome: 'API Restfull com Spring e Java', preco: 'R$ 15,90' },
         { nome: 'Typescript na Prática', preco: '19,90' }
     ];
-
-    const [listaProdutos, setListaProdutos] = useState([]);
 
     function handleComprar(event, produto){
         event.preventDefault();

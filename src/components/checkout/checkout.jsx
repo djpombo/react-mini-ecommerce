@@ -1,4 +1,4 @@
-import { Form, Col, Row, Button, Jumbotron, Modal } from 'react-bootstrap';
+import { Form, Col, Row, Button, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale } from 'react-datepicker';
@@ -10,9 +10,12 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { formatarCpf, validarCpf } from '../../utils/cpf.util';
 import { formatarCep } from '../../utils/cep.util';
+import axios from 'axios';
 import './styles.css';
 
 registerLocale('pt', pt);
+
+const CHECKOUT_URL='http://localhost:3001/mini-ecommerce/checkout/finalizar-compra';
 
 function Checkout(props) {
 
@@ -40,7 +43,26 @@ function Checkout(props) {
         return props.visivel ? null : 'hidden';
     }
 
-    function finalizarCompra(values) {
+    async function finalizarCompra(dados) {
+
+        if(!dataNascimento){
+            setFormEnviado(true);
+            return;
+        }
+        dados.dataNascimento = dataNascimento;
+        dados.produtos = JSON.stringify(props.produtos);
+        dados.total = `R$: ${props.total}`;
+
+        try{            
+                await axios.post(CHECKOUT_URL, dados);
+                setShowModal(true);
+                props.handleLimparCarrinho();
+       
+        } catch (error) {
+
+            setShowErroModal(true);
+
+        }
 
     }
 
